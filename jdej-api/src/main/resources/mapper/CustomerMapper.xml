@@ -10,7 +10,9 @@
     <result column="company" jdbcType="VARCHAR" property="company" />
     <result column="realname" jdbcType="VARCHAR" property="realname" />
     <result column="phone" jdbcType="VARCHAR" property="phone" />
-    <result column="address" jdbcType="VARCHAR" property="address" />
+    <result column="province" jdbcType="VARCHAR" property="province" />
+    <result column="city" jdbcType="VARCHAR" property="city" />
+    <result column="addr_detail" jdbcType="VARCHAR" property="addrDetail" />
     <result column="jointime" jdbcType="TIMESTAMP" property="jointime" />
     <result column="total_consumer" jdbcType="DECIMAL" property="totalConsumer" />
     <result column="total_order" jdbcType="INTEGER" property="totalOrder" />
@@ -24,9 +26,9 @@
     <result column="err_login_times" jdbcType="BIT" property="errLoginTimes" />
   </resultMap>
   <sql id="Base_Column_List">
-    customer_id, avator, nick, cus_type, store_id, company, realname, phone, address, 
-    jointime, total_consumer, total_order, status, reg_ip, last_login_time, last_login_ip, 
-    score, continue_login, is_login, err_login_times
+    customer_id, avator, nick, cus_type, store_id, company, realname, phone, province, 
+    city, addr_detail, jointime, total_consumer, total_order, status, reg_ip, last_login_time, 
+    last_login_ip, score, continue_login, is_login, err_login_times
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
@@ -41,18 +43,20 @@
   <insert id="insert" parameterType="com.miquan.jdej.common.model.Customer">
     insert into jdej_customer (customer_id, avator, nick, 
       cus_type, store_id, company, 
-      realname, phone, address, 
-      jointime, total_consumer, total_order, 
-      status, reg_ip, last_login_time, 
-      last_login_ip, score, continue_login, 
-      is_login, err_login_times)
+      realname, phone, province, 
+      city, addr_detail, jointime, 
+      total_consumer, total_order, status, 
+      reg_ip, last_login_time, last_login_ip, 
+      score, continue_login, is_login, 
+      err_login_times)
     values (#{customerId,jdbcType=INTEGER}, #{avator,jdbcType=VARCHAR}, #{nick,jdbcType=VARCHAR}, 
       #{cusType,jdbcType=TINYINT}, #{storeId,jdbcType=INTEGER}, #{company,jdbcType=VARCHAR}, 
-      #{realname,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, 
-      #{jointime,jdbcType=TIMESTAMP}, #{totalConsumer,jdbcType=DECIMAL}, #{totalOrder,jdbcType=INTEGER}, 
-      #{status,jdbcType=TINYINT}, #{regIp,jdbcType=VARCHAR}, #{lastLoginTime,jdbcType=TIMESTAMP}, 
-      #{lastLoginIp,jdbcType=VARCHAR}, #{score,jdbcType=INTEGER}, #{continueLogin,jdbcType=INTEGER}, 
-      #{isLogin,jdbcType=BIT}, #{errLoginTimes,jdbcType=BIT})
+      #{realname,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}, #{province,jdbcType=VARCHAR}, 
+      #{city,jdbcType=VARCHAR}, #{addrDetail,jdbcType=VARCHAR}, #{jointime,jdbcType=TIMESTAMP}, 
+      #{totalConsumer,jdbcType=DECIMAL}, #{totalOrder,jdbcType=INTEGER}, #{status,jdbcType=TINYINT}, 
+      #{regIp,jdbcType=VARCHAR}, #{lastLoginTime,jdbcType=TIMESTAMP}, #{lastLoginIp,jdbcType=VARCHAR}, 
+      #{score,jdbcType=INTEGER}, #{continueLogin,jdbcType=INTEGER}, #{isLogin,jdbcType=BIT}, 
+      #{errLoginTimes,jdbcType=BIT})
   </insert>
   <insert id="insertSelective" parameterType="com.miquan.jdej.common.model.Customer">
     insert into jdej_customer
@@ -81,8 +85,14 @@
       <if test="phone != null">
         phone,
       </if>
-      <if test="address != null">
-        address,
+      <if test="province != null">
+        province,
+      </if>
+      <if test="city != null">
+        city,
+      </if>
+      <if test="addrDetail != null">
+        addr_detail,
       </if>
       <if test="jointime != null">
         jointime,
@@ -143,8 +153,14 @@
       <if test="phone != null">
         #{phone,jdbcType=VARCHAR},
       </if>
-      <if test="address != null">
-        #{address,jdbcType=VARCHAR},
+      <if test="province != null">
+        #{province,jdbcType=VARCHAR},
+      </if>
+      <if test="city != null">
+        #{city,jdbcType=VARCHAR},
+      </if>
+      <if test="addrDetail != null">
+        #{addrDetail,jdbcType=VARCHAR},
       </if>
       <if test="jointime != null">
         #{jointime,jdbcType=TIMESTAMP},
@@ -205,8 +221,14 @@
       <if test="phone != null">
         phone = #{phone,jdbcType=VARCHAR},
       </if>
-      <if test="address != null">
-        address = #{address,jdbcType=VARCHAR},
+      <if test="province != null">
+        province = #{province,jdbcType=VARCHAR},
+      </if>
+      <if test="city != null">
+        city = #{city,jdbcType=VARCHAR},
+      </if>
+      <if test="addrDetail != null">
+        addr_detail = #{addrDetail,jdbcType=VARCHAR},
       </if>
       <if test="jointime != null">
         jointime = #{jointime,jdbcType=TIMESTAMP},
@@ -253,7 +275,9 @@
       company = #{company,jdbcType=VARCHAR},
       realname = #{realname,jdbcType=VARCHAR},
       phone = #{phone,jdbcType=VARCHAR},
-      address = #{address,jdbcType=VARCHAR},
+      province = #{province,jdbcType=VARCHAR},
+      city = #{city,jdbcType=VARCHAR},
+      addr_detail = #{addrDetail,jdbcType=VARCHAR},
       jointime = #{jointime,jdbcType=TIMESTAMP},
       total_consumer = #{totalConsumer,jdbcType=DECIMAL},
       total_order = #{totalOrder,jdbcType=INTEGER},

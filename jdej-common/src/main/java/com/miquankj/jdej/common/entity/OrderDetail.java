@@ -9,6 +9,8 @@ public class OrderDetail {
 
     private String proName;
 
+    private String proCategory;
+
     private String proPic;
 
     private Long priceUnit;
@@ -47,6 +49,14 @@ public class OrderDetail {
 
     public void setProName(String proName) {
         this.proName = proName;
+    }
+
+    public String getProCategory() {
+        return proCategory;
+    }
+
+    public void setProCategory(String proCategory) {
+        this.proCategory = proCategory;
     }
 
     public String getProPic() {

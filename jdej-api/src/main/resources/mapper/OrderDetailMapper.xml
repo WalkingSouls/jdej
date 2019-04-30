@@ -6,13 +6,15 @@
     <result column="order_id" jdbcType="VARCHAR" property="orderId" />
     <result column="product_id" jdbcType="INTEGER" property="productId" />
     <result column="pro_name" jdbcType="VARCHAR" property="proName" />
+    <result column="pro_category" jdbcType="VARCHAR" property="proCategory" />
     <result column="pro_pic" jdbcType="VARCHAR" property="proPic" />
     <result column="price_unit" jdbcType="DECIMAL" property="priceUnit" />
     <result column="amount" jdbcType="INTEGER" property="amount" />
     <result column="status" jdbcType="TINYINT" property="status" />
   </resultMap>
   <sql id="Base_Column_List">
-    detail_id, order_id, product_id, pro_name, pro_pic, price_unit, amount, status
+    detail_id, order_id, product_id, pro_name, pro_category, pro_pic, price_unit, amount, 
+    status
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
     select 
@@ -26,11 +28,13 @@
   </delete>
   <insert id="insert" parameterType="com.miquan.jdej.common.model.OrderDetail">
     insert into jdej_order_detail (detail_id, order_id, product_id, 
-      pro_name, pro_pic, price_unit, 
-      amount, status)
+      pro_name, pro_category, pro_pic, 
+      price_unit, amount, status
+      )
     values (#{detailId,jdbcType=BIGINT}, #{orderId,jdbcType=VARCHAR}, #{productId,jdbcType=INTEGER}, 
-      #{proName,jdbcType=VARCHAR}, #{proPic,jdbcType=VARCHAR}, #{priceUnit,jdbcType=DECIMAL}, 
-      #{amount,jdbcType=INTEGER}, #{status,jdbcType=TINYINT})
+      #{proName,jdbcType=VARCHAR}, #{proCategory,jdbcType=VARCHAR}, #{proPic,jdbcType=VARCHAR}, 
+      #{priceUnit,jdbcType=DECIMAL}, #{amount,jdbcType=INTEGER}, #{status,jdbcType=TINYINT}
+      )
   </insert>
   <insert id="insertSelective" parameterType="com.miquan.jdej.common.model.OrderDetail">
     insert into jdej_order_detail
@@ -46,6 +50,9 @@
       </if>
       <if test="proName != null">
         pro_name,
+      </if>
+      <if test="proCategory != null">
+        pro_category,
       </if>
       <if test="proPic != null">
         pro_pic,
@@ -73,6 +80,9 @@
       <if test="proName != null">
         #{proName,jdbcType=VARCHAR},
       </if>
+      <if test="proCategory != null">
+        #{proCategory,jdbcType=VARCHAR},
+      </if>
       <if test="proPic != null">
         #{proPic,jdbcType=VARCHAR},
       </if>
@@ -99,6 +109,9 @@
       <if test="proName != null">
         pro_name = #{proName,jdbcType=VARCHAR},
       </if>
+      <if test="proCategory != null">
+        pro_category = #{proCategory,jdbcType=VARCHAR},
+      </if>
       <if test="proPic != null">
         pro_pic = #{proPic,jdbcType=VARCHAR},
       </if>
@@ -119,6 +132,7 @@
     set order_id = #{orderId,jdbcType=VARCHAR},
       product_id = #{productId,jdbcType=INTEGER},
       pro_name = #{proName,jdbcType=VARCHAR},
+      pro_category = #{proCategory,jdbcType=VARCHAR},
       pro_pic = #{proPic,jdbcType=VARCHAR},
       price_unit = #{priceUnit,jdbcType=DECIMAL},
       amount = #{amount,jdbcType=INTEGER},

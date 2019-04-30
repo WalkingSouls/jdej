@@ -37,6 +37,8 @@ public class Product {
 
     private Byte productStatus;
 
+    private Integer salesNum;
+
     private Date createTime;
 
     private Date updateTime;
@@ -177,6 +179,14 @@ public class Product {
 
     public void setProductStatus(Byte productStatus) {
         this.productStatus = productStatus;
+    }
+
+    public Integer getSalesNum() {
+        return salesNum;
+    }
+
+    public void setSalesNum(Integer salesNum) {
+        this.salesNum = salesNum;
     }
 
     public Date getCreateTime() {

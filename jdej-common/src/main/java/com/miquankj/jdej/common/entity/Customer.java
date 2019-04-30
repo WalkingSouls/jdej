@@ -19,7 +19,11 @@ public class Customer {
 
     private String phone;
 
-    private String address;
+    private String province;
+
+    private String city;
+
+    private String addrDetail;
 
     private Date jointime;
 
@@ -107,12 +111,28 @@ public class Customer {
         this.phone = phone;
     }
 
-    public String getAddress() {
-        return address;
+    public String getProvince() {
+        return province;
     }
 
-    public void setAddress(String address) {
-        this.address = address;
+    public void setProvince(String province) {
+        this.province = province;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public String getAddrDetail() {
+        return addrDetail;
+    }
+
+    public void setAddrDetail(String addrDetail) {
+        this.addrDetail = addrDetail;
     }
 
     public Date getJointime() {

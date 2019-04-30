@@ -19,6 +19,7 @@
     <result column="price_unit" jdbcType="DECIMAL" property="priceUnit" />
     <result column="stock" jdbcType="INTEGER" property="stock" />
     <result column="product_status" jdbcType="TINYINT" property="productStatus" />
+    <result column="sales_num" jdbcType="INTEGER" property="salesNum" />
     <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
     <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
   </resultMap>
@@ -28,7 +29,7 @@
   <sql id="Base_Column_List">
     product_id, store_id, pro_name, category_id, category_name, pro_pic, is_normed, is_distributed, 
     discount, delivery_days, delivery_type, onsale_time_type, onsale_time, specimen, 
-    price_unit, stock, product_status, create_time, update_time
+    price_unit, stock, product_status, sales_num, create_time, update_time
   </sql>
   <sql id="Blob_Column_List">
     product_info
@@ -51,15 +52,17 @@
       is_normed, is_distributed, discount, 
       delivery_days, delivery_type, onsale_time_type, 
       onsale_time, specimen, price_unit, 
-      stock, product_status, create_time, 
-      update_time, product_info)
+      stock, product_status, sales_num, 
+      create_time, update_time, product_info
+      )
     values (#{productId,jdbcType=INTEGER}, #{storeId,jdbcType=INTEGER}, #{proName,jdbcType=VARCHAR}, 
       #{categoryId,jdbcType=INTEGER}, #{categoryName,jdbcType=VARCHAR}, #{proPic,jdbcType=VARCHAR}, 
       #{isNormed,jdbcType=TINYINT}, #{isDistributed,jdbcType=TINYINT}, #{discount,jdbcType=DECIMAL}, 
       #{deliveryDays,jdbcType=INTEGER}, #{deliveryType,jdbcType=TINYINT}, #{onsaleTimeType,jdbcType=TINYINT}, 
       #{onsaleTime,jdbcType=TIMESTAMP}, #{specimen,jdbcType=TINYINT}, #{priceUnit,jdbcType=DECIMAL}, 
-      #{stock,jdbcType=INTEGER}, #{productStatus,jdbcType=TINYINT}, #{createTime,jdbcType=TIMESTAMP}, 
-      #{updateTime,jdbcType=TIMESTAMP}, #{productInfo,jdbcType=LONGVARCHAR})
+      #{stock,jdbcType=INTEGER}, #{productStatus,jdbcType=TINYINT}, #{salesNum,jdbcType=INTEGER}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, #{productInfo,jdbcType=LONGVARCHAR}
+      )
   </insert>
   <insert id="insertSelective" parameterType="com.miquan.jdej.common.model.Product">
     insert into jdej_product
@@ -114,6 +117,9 @@
       </if>
       <if test="productStatus != null">
         product_status,
+      </if>
+      <if test="salesNum != null">
+        sales_num,
       </if>
       <if test="createTime != null">
         create_time,
@@ -177,6 +183,9 @@
       <if test="productStatus != null">
         #{productStatus,jdbcType=TINYINT},
       </if>
+      <if test="salesNum != null">
+        #{salesNum,jdbcType=INTEGER},
+      </if>
       <if test="createTime != null">
         #{createTime,jdbcType=TIMESTAMP},
       </if>
@@ -239,6 +248,9 @@
       <if test="productStatus != null">
         product_status = #{productStatus,jdbcType=TINYINT},
       </if>
+      <if test="salesNum != null">
+        sales_num = #{salesNum,jdbcType=INTEGER},
+      </if>
       <if test="createTime != null">
         create_time = #{createTime,jdbcType=TIMESTAMP},
       </if>
@@ -269,6 +281,7 @@
       price_unit = #{priceUnit,jdbcType=DECIMAL},
       stock = #{stock,jdbcType=INTEGER},
       product_status = #{productStatus,jdbcType=TINYINT},
+      sales_num = #{salesNum,jdbcType=INTEGER},
       create_time = #{createTime,jdbcType=TIMESTAMP},
       update_time = #{updateTime,jdbcType=TIMESTAMP},
       product_info = #{productInfo,jdbcType=LONGVARCHAR}
@@ -292,6 +305,7 @@
       price_unit = #{priceUnit,jdbcType=DECIMAL},
       stock = #{stock,jdbcType=INTEGER},
       product_status = #{productStatus,jdbcType=TINYINT},
+      sales_num = #{salesNum,jdbcType=INTEGER},
       create_time = #{createTime,jdbcType=TIMESTAMP},
       update_time = #{updateTime,jdbcType=TIMESTAMP}
     where product_id = #{productId,jdbcType=INTEGER}
